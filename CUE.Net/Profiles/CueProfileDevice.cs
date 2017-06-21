@@ -51,10 +51,7 @@ namespace CUE.Net.Profiles
 
         #region Constructors
 
-        private CueProfileDevice(string name)
-        {
-            this.Name = name;
-        }
+        private CueProfileDevice(string name) => Name = name;
 
         #endregion
 
@@ -80,7 +77,7 @@ namespace CUE.Net.Profiles
                         .ToDictionary(x => x.Name)
                 };
             }
-            // ReSharper disable once CatchAllClause - I have no idea how the factory pattern should handle such a case - time to read :p 
+            // ReSharper disable once CatchAllClause - I have no idea how the factory pattern should handle such a case - time to read :p
             catch
             {
                 return null;

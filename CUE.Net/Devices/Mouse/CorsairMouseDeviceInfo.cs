@@ -4,6 +4,7 @@
 using CUE.Net.Devices.Generic;
 using CUE.Net.Devices.Mouse.Enums;
 using CUE.Net.Native;
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
 
 namespace CUE.Net.Devices.Mouse
 {
@@ -28,10 +29,7 @@ namespace CUE.Net.Devices.Mouse
         /// </summary>
         /// <param name="nativeInfo">The native <see cref="_CorsairDeviceInfo" />-struct</param>
         internal CorsairMouseDeviceInfo(_CorsairDeviceInfo nativeInfo)
-            : base(nativeInfo)
-        {
-            this.PhysicalLayout = (CorsairPhysicalMouseLayout)nativeInfo.physicalLayout;
-        }
+            : base(nativeInfo) => PhysicalLayout = (CorsairPhysicalMouseLayout)nativeInfo.physicalLayout;
 
         #endregion
     }

@@ -2,6 +2,9 @@
 using System.Drawing;
 using CUE.Net.Brushes;
 using CUE.Net.Devices.Generic;
+// ReSharper disable UnusedMember.Global
+// ReSharper disable FieldCanBeMadeReadOnly.Local
+// ReSharper disable UnusedMember.Local
 
 namespace CUE.Net.Effects
 {
@@ -29,15 +32,9 @@ namespace CUE.Net.Effects
 
         private class RippleBrush : AbstractBrush
         {
-            public Color GetColorAtPoint(RectangleF rectangle, PointF point)
-            {
-                return FinalizeColor(Color.Black);
-            }
+            public Color GetColorAtPoint(RectangleF rectangle, PointF point) => FinalizeColor(Color.Black);
 
-            protected override CorsairColor GetColorAtPoint(RectangleF rectangle, BrushRenderTarget renderTarget)
-            {
-                throw new NotImplementedException();
-            }
+            protected override CorsairColor GetColorAtPoint(RectangleF rectangle, BrushRenderTarget renderTarget) => throw new NotImplementedException();
         }
     }
 }

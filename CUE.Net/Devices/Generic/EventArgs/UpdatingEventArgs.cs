@@ -23,10 +23,7 @@ namespace CUE.Net.Devices.Generic.EventArgs
         /// Initializes a new instance of the <see cref="UpdatingEventArgs"/> class.
         /// </summary>
         /// <param name="deltaTime">The elapsed time (in seconds) sonce the last update.</param>
-        public UpdatingEventArgs(float deltaTime)
-        {
-            this.DeltaTime = deltaTime;
-        }
+        public UpdatingEventArgs(float deltaTime) => DeltaTime = deltaTime;
 
         #endregion
     }

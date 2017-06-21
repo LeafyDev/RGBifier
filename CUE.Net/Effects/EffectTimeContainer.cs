@@ -31,8 +31,8 @@ namespace CUE.Net.Effects
         /// <param name="ticksAtLastUpdate">The tick-count from the last time the effect was updated.</param>
         public EffectTimeContainer(IEffect effect, long ticksAtLastUpdate)
         {
-            this.Effect = effect;
-            this.TicksAtLastUpdate = ticksAtLastUpdate;
+            Effect = effect;
+            TicksAtLastUpdate = ticksAtLastUpdate;
         }
 
         #endregion

@@ -33,8 +33,8 @@ namespace CUE.Net.Gradients
         /// <param name="color">The color of the stop.</param>
         public GradientStop(float offset, CorsairColor color)
         {
-            this.Offset = offset;
-            this.Color = color;
+            Offset = offset;
+            Color = color;
         }
 
         #endregion

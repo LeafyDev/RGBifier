@@ -41,10 +41,7 @@ namespace CUE.Net.Brushes
         /// Initializes a new instance of the <see cref="RadialGradientBrush"/> class.
         /// </summary>
         /// <param name="gradient">The gradient drawn by the brush.</param>
-        public RadialGradientBrush(IGradient gradient)
-        {
-            this.Gradient = gradient;
-        }
+        public RadialGradientBrush(IGradient gradient) => Gradient = gradient;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RadialGradientBrush"/> class.
@@ -53,8 +50,8 @@ namespace CUE.Net.Brushes
         /// <param name="gradient">The gradient drawn by the brush.</param>
         public RadialGradientBrush(PointF center, IGradient gradient)
         {
-            this.Center = center;
-            this.Gradient = gradient;
+            Center = center;
+            Gradient = gradient;
         }
 
         #endregion

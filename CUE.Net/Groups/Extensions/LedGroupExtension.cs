@@ -3,6 +3,7 @@
 
 using CUE.Net.Devices.Generic;
 using CUE.Net.Devices.Generic.Enums;
+// ReSharper disable UnusedMethodReturnValue.Global
 
 namespace CUE.Net.Groups.Extensions
 {
@@ -18,11 +19,11 @@ namespace CUE.Net.Groups.Extensions
         /// <returns>The converted <see cref="ListLedGroup" />.</returns>
         public static ListLedGroup ToListLedGroup(this AbstractLedGroup ledGroup)
         {
-            ListLedGroup listLedGroup = ledGroup as ListLedGroup;
+            var listLedGroup = ledGroup as ListLedGroup;
             // ReSharper disable once InvertIf
             if (listLedGroup == null)
             {
-                bool wasAttached = ledGroup.Detach();
+                var wasAttached = ledGroup.Detach();
                 listLedGroup = new ListLedGroup(ledGroup.Device, wasAttached, ledGroup.GetLeds()) { Brush = ledGroup.Brush };
             }
             return listLedGroup;
@@ -36,8 +37,8 @@ namespace CUE.Net.Groups.Extensions
         /// <returns>The new <see cref="ListLedGroup" />.</returns>
         public static ListLedGroup Exclude(this AbstractLedGroup ledGroup, params CorsairLedId[] ledIds)
         {
-            ListLedGroup listLedGroup = ledGroup.ToListLedGroup();
-            foreach (CorsairLedId ledId in ledIds)
+            var listLedGroup = ledGroup.ToListLedGroup();
+            foreach (var ledId in ledIds)
                 listLedGroup.RemoveLed(ledId);
             return listLedGroup;
         }
@@ -50,8 +51,8 @@ namespace CUE.Net.Groups.Extensions
         /// <returns>The new <see cref="ListLedGroup" />.</returns>
         public static ListLedGroup Exclude(this AbstractLedGroup ledGroup, params CorsairLed[] ledIds)
         {
-            ListLedGroup listLedGroup = ledGroup.ToListLedGroup();
-            foreach (CorsairLed led in ledIds)
+            var listLedGroup = ledGroup.ToListLedGroup();
+            foreach (var led in ledIds)
                 listLedGroup.RemoveLed(led);
             return listLedGroup;
         }
@@ -62,19 +63,13 @@ namespace CUE.Net.Groups.Extensions
         /// </summary>
         /// <param name="ledGroup">The ledgroup to attach.</param>
         /// <returns><c>true</c> if the ledgroup could be attached; otherwise, <c>false</c>.</returns>
-        public static bool Attach(this AbstractLedGroup ledGroup)
-        {
-            return ledGroup.Device?.AttachLedGroup(ledGroup) ?? false;
-        }
+        public static bool Attach(this AbstractLedGroup ledGroup) => ledGroup.Device?.AttachLedGroup(ledGroup) ?? false;
 
         /// <summary>
         /// Detaches the given ledgroup from the device.
         /// </summary>
         /// <param name="ledGroup">The ledgroup to attach.</param>
         /// <returns><c>true</c> if the ledgroup could be detached; otherwise, <c>false</c>.</returns>
-        public static bool Detach(this AbstractLedGroup ledGroup)
-        {
-            return ledGroup.Device?.DetachLedGroup(ledGroup) ?? false;
-        }
+        public static bool Detach(this AbstractLedGroup ledGroup) => ledGroup.Device?.DetachLedGroup(ledGroup) ?? false;
     }
 }

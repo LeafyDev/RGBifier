@@ -50,16 +50,16 @@ namespace CUE.Net.Native
 
             _dllHandle = LoadLibrary(dllPath);
 
-            _corsairSetLedsColorsPointer = (CorsairSetLedsColorsPointer)Marshal.GetDelegateForFunctionPointer(GetProcAddress(_dllHandle, "CorsairSetLedsColors"), typeof(CorsairSetLedsColorsPointer));
-            _corsairGetDeviceCountPointer = (CorsairGetDeviceCountPointer)Marshal.GetDelegateForFunctionPointer(GetProcAddress(_dllHandle, "CorsairGetDeviceCount"), typeof(CorsairGetDeviceCountPointer));
-            _corsairGetDeviceInfoPointer = (CorsairGetDeviceInfoPointer)Marshal.GetDelegateForFunctionPointer(GetProcAddress(_dllHandle, "CorsairGetDeviceInfo"), typeof(CorsairGetDeviceInfoPointer));
-            _corsairGetLedPositionsPointer = (CorsairGetLedPositionsPointer)Marshal.GetDelegateForFunctionPointer(GetProcAddress(_dllHandle, "CorsairGetLedPositions"), typeof(CorsairGetLedPositionsPointer));
-            _corsairGetLedPositionsByDeviceIndexPointer = (CorsairGetLedPositionsByDeviceIndexPointer)Marshal.GetDelegateForFunctionPointer(GetProcAddress(_dllHandle, "CorsairGetLedPositionsByDeviceIndex"), typeof(CorsairGetLedPositionsByDeviceIndexPointer));
-            _corsairGetLedIdForKeyNamePointer = (CorsairGetLedIdForKeyNamePointer)Marshal.GetDelegateForFunctionPointer(GetProcAddress(_dllHandle, "CorsairGetLedIdForKeyName"), typeof(CorsairGetLedIdForKeyNamePointer));
-            _corsairRequestControlPointer = (CorsairRequestControlPointer)Marshal.GetDelegateForFunctionPointer(GetProcAddress(_dllHandle, "CorsairRequestControl"), typeof(CorsairRequestControlPointer));
-            _corsairReleaseControlPointer = (CorsairReleaseControlPointer)Marshal.GetDelegateForFunctionPointer(GetProcAddress(_dllHandle, "CorsairReleaseControl"), typeof(CorsairReleaseControlPointer));
-            _corsairPerformProtocolHandshakePointer = (CorsairPerformProtocolHandshakePointer)Marshal.GetDelegateForFunctionPointer(GetProcAddress(_dllHandle, "CorsairPerformProtocolHandshake"), typeof(CorsairPerformProtocolHandshakePointer));
-            _corsairGetLastErrorPointer = (CorsairGetLastErrorPointer)Marshal.GetDelegateForFunctionPointer(GetProcAddress(_dllHandle, "CorsairGetLastError"), typeof(CorsairGetLastErrorPointer));
+            _corsairSetLedsColorsPointer = Marshal.GetDelegateForFunctionPointer<CorsairSetLedsColorsPointer>(GetProcAddress(_dllHandle, "CorsairSetLedsColors"));
+            _corsairGetDeviceCountPointer = Marshal.GetDelegateForFunctionPointer<CorsairGetDeviceCountPointer>(GetProcAddress(_dllHandle, "CorsairGetDeviceCount"));
+            _corsairGetDeviceInfoPointer = Marshal.GetDelegateForFunctionPointer<CorsairGetDeviceInfoPointer>(GetProcAddress(_dllHandle, "CorsairGetDeviceInfo"));
+            _corsairGetLedPositionsPointer = Marshal.GetDelegateForFunctionPointer<CorsairGetLedPositionsPointer>(GetProcAddress(_dllHandle, "CorsairGetLedPositions"));
+            _corsairGetLedPositionsByDeviceIndexPointer = Marshal.GetDelegateForFunctionPointer<CorsairGetLedPositionsByDeviceIndexPointer>(GetProcAddress(_dllHandle, "CorsairGetLedPositionsByDeviceIndex"));
+            _corsairGetLedIdForKeyNamePointer = Marshal.GetDelegateForFunctionPointer<CorsairGetLedIdForKeyNamePointer>(GetProcAddress(_dllHandle, "CorsairGetLedIdForKeyName"));
+            _corsairRequestControlPointer = Marshal.GetDelegateForFunctionPointer<CorsairRequestControlPointer>(GetProcAddress(_dllHandle, "CorsairRequestControl"));
+            _corsairReleaseControlPointer = Marshal.GetDelegateForFunctionPointer<CorsairReleaseControlPointer>(GetProcAddress(_dllHandle, "CorsairReleaseControl"));
+            _corsairPerformProtocolHandshakePointer = Marshal.GetDelegateForFunctionPointer<CorsairPerformProtocolHandshakePointer>(GetProcAddress(_dllHandle, "CorsairPerformProtocolHandshake"));
+            _corsairGetLastErrorPointer = Marshal.GetDelegateForFunctionPointer<CorsairGetLastErrorPointer>(GetProcAddress(_dllHandle, "CorsairGetLastError"));
         }
 
         private static void UnloadCUESDK()
@@ -138,83 +138,53 @@ namespace CUE.Net.Native
         /// <summary>
         /// CUE-SDK: set specified leds to some colors. The color is retained until changed by successive calls. This function does not take logical layout into account.
         /// </summary>
-        internal static bool CorsairSetLedsColors(int size, IntPtr ledsColors)
-        {
-            return _corsairSetLedsColorsPointer(size, ledsColors);
-        }
+        internal static bool CorsairSetLedsColors(int size, IntPtr ledsColors) => _corsairSetLedsColorsPointer(size, ledsColors);
 
         /// <summary>
         /// CUE-SDK: returns number of connected Corsair devices that support lighting control.
         /// </summary>
-        internal static int CorsairGetDeviceCount()
-        {
-            return _corsairGetDeviceCountPointer();
-        }
+        internal static int CorsairGetDeviceCount() => _corsairGetDeviceCountPointer();
 
         /// <summary>
         /// CUE-SDK: returns information about device at provided index.
         /// </summary>
-        internal static IntPtr CorsairGetDeviceInfo(int deviceIndex)
-        {
-            return _corsairGetDeviceInfoPointer(deviceIndex);
-        }
+        internal static IntPtr CorsairGetDeviceInfo(int deviceIndex) => _corsairGetDeviceInfoPointer(deviceIndex);
 
         /// <summary>
         /// CUE-SDK: provides list of keyboard LEDs with their physical positions.
         /// </summary>
-        internal static IntPtr CorsairGetLedPositions()
-        {
-            return _corsairGetLedPositionsPointer();
-        }
+        internal static IntPtr CorsairGetLedPositions() => _corsairGetLedPositionsPointer();
 
         /// <summary>
         /// CUE-SDK: provides list of keyboard or mousemat LEDs with their physical positions.
         /// </summary>
-        internal static IntPtr CorsairGetLedPositionsByDeviceIndex(int deviceIndex)
-        {
-            return _corsairGetLedPositionsByDeviceIndexPointer(deviceIndex);
-        }
+        internal static IntPtr CorsairGetLedPositionsByDeviceIndex(int deviceIndex) => _corsairGetLedPositionsByDeviceIndexPointer(deviceIndex);
 
         /// <summary>
         /// CUE-SDK: retrieves led id for key name taking logical layout into account.
         /// </summary>
-        internal static CorsairLedId CorsairGetLedIdForKeyName(char keyName)
-        {
-            return _corsairGetLedIdForKeyNamePointer(keyName);
-        }
+        internal static CorsairLedId CorsairGetLedIdForKeyName(char keyName) => _corsairGetLedIdForKeyNamePointer(keyName);
 
         /// <summary>
         /// CUE-SDK: requestes control using specified access mode.
         /// By default client has shared control over lighting so there is no need to call CorsairRequestControl unless client requires exclusive control.
         /// </summary>
-        internal static bool CorsairRequestControl(CorsairAccessMode accessMode)
-        {
-            return _corsairRequestControlPointer(accessMode);
-        }
+        internal static bool CorsairRequestControl(CorsairAccessMode accessMode) => _corsairRequestControlPointer(accessMode);
 
         /// <summary>
         /// CUE-SDK: releases previously requested control for specified access mode.
         /// </summary>
-        internal static bool CorsairReleaseControl(CorsairAccessMode accessMode)
-        {
-            return _corsairReleaseControlPointer(accessMode);
-        }
+        internal static bool CorsairReleaseControl(CorsairAccessMode accessMode) => _corsairReleaseControlPointer(accessMode);
 
         /// <summary>
         /// CUE-SDK: checks file and protocol version of CUE to understand which of SDK functions can be used with this version of CUE.
         /// </summary>
-        internal static _CorsairProtocolDetails CorsairPerformProtocolHandshake()
-        {
-            return _corsairPerformProtocolHandshakePointer();
-        }
+        internal static _CorsairProtocolDetails CorsairPerformProtocolHandshake() => _corsairPerformProtocolHandshakePointer();
 
         /// <summary>
         /// CUE-SDK: returns last error that occured while using any of Corsair* functions.
         /// </summary>
-        internal static CorsairError CorsairGetLastError()
-        {
-            return _corsairGetLastErrorPointer();
-        }
+        internal static CorsairError CorsairGetLastError() => _corsairGetLastErrorPointer();
 
         // ReSharper restore EventExceptionNotDocumented
 

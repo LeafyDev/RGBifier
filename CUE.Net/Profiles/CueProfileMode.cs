@@ -32,19 +32,13 @@ namespace CUE.Net.Profiles
         /// Converts a <see cref="CueProfileMode" /> to a <see cref="ProfileBrush" />.
         /// </summary>
         /// <param name="profile">The profile mode to convert.</param>
-        public static implicit operator ProfileBrush(CueProfileMode profile)
-        {
-            return profile != null ? new ProfileBrush(profile._colors) : null;
-        }
+        public static implicit operator ProfileBrush(CueProfileMode profile) => profile != null ? new ProfileBrush(profile._colors) : null;
 
         #endregion
 
         #region Constructors
 
-        private CueProfileMode(string name)
-        {
-            this.Name = name;
-        }
+        private CueProfileMode(string name) => Name = name;
 
         #endregion
 
@@ -80,7 +74,7 @@ namespace CUE.Net.Profiles
                         .ToDictionary(x => x.key, x => x.color)
                 };
             }
-            // ReSharper disable once CatchAllClause - I have no idea how the factory pattern should handle such a case - time to read :p 
+            // ReSharper disable once CatchAllClause - I have no idea how the factory pattern should handle such a case - time to read :p
             catch
             {
                 return null;

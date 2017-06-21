@@ -30,10 +30,7 @@ namespace CUE.Net.Devices.Mouse
         /// </summary>
         /// <param name="info">The specific information provided by CUE for the mouse</param>
         internal CorsairMouse(CorsairMouseDeviceInfo info)
-            : base(info)
-        {
-            this.MouseDeviceInfo = info;
-        }
+            : base(info) => MouseDeviceInfo = info;
 
         #endregion
 

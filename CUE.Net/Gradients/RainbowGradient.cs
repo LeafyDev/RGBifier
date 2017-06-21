@@ -35,8 +35,8 @@ namespace CUE.Net.Gradients
         /// <param name="endHue">The hue (in degrees) to end with (default: 360)</param>
         public RainbowGradient(float startHue = 0f, float endHue = 360f)
         {
-            this.StartHue = startHue;
-            this.EndHue = endHue;
+            StartHue = startHue;
+            EndHue = endHue;
         }
 
         #endregion

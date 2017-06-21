@@ -66,8 +66,8 @@ namespace CUE.Net.Brushes
         /// <param name="opacity">The overall percentage opacity of the brush. (default: 1f)</param>
         protected AbstractBrush(float brightness = 1f, float opacity = 1f)
         {
-            this.Brightness = brightness;
-            this.Opacity = opacity;
+            Brightness = brightness;
+            Opacity = opacity;
         }
 
         #endregion

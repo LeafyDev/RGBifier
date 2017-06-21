@@ -29,10 +29,7 @@ namespace CUE.Net.Devices.Headset
         /// </summary>
         /// <param name="info">The specific information provided by CUE for the headset</param>
         internal CorsairHeadset(CorsairHeadsetDeviceInfo info)
-            : base(info)
-        {
-            this.HeadsetDeviceInfo = info;
-        }
+            : base(info) => HeadsetDeviceInfo = info;
 
         #endregion
 

@@ -7,7 +7,6 @@ using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using CUE.Net.Devices.Generic;
-using CUE.Net.Devices.Generic.Enums;
 using CUE.Net.Native;
 
 namespace CUE.Net.Devices.Keyboard
@@ -36,9 +35,8 @@ namespace CUE.Net.Devices.Keyboard
         {
             get
             {
-                CorsairLedId ledId = _CUESDK.CorsairGetLedIdForKeyName(key);
-                CorsairLed led;
-                return LedMapping.TryGetValue(ledId, out led) ? led : null;
+                var ledId = _CUESDK.CorsairGetLedIdForKeyName(key);
+                return LedMapping.TryGetValue(ledId, out CorsairLed led) ? led : null;
             }
         }
 
@@ -53,10 +51,7 @@ namespace CUE.Net.Devices.Keyboard
         /// </summary>
         /// <param name="info">The specific information provided by CUE for the keyboard</param>
         internal CorsairKeyboard(CorsairKeyboardDeviceInfo info)
-            : base(info)
-        {
-            this.KeyboardDeviceInfo = info;
-        }
+            : base(info) => KeyboardDeviceInfo = info;
 
         #endregion
 
@@ -67,12 +62,12 @@ namespace CUE.Net.Devices.Keyboard
         /// </summary>
         public override void Initialize()
         {
-            _CorsairLedPositions nativeLedPositions = (_CorsairLedPositions)Marshal.PtrToStructure(_CUESDK.CorsairGetLedPositions(), typeof(_CorsairLedPositions));
-            int structSize = Marshal.SizeOf(typeof(_CorsairLedPosition));
-            IntPtr ptr = nativeLedPositions.pLedPosition;
-            for (int i = 0; i < nativeLedPositions.numberOfLed; i++)
+            var nativeLedPositions = Marshal.PtrToStructure<_CorsairLedPositions>(_CUESDK.CorsairGetLedPositions());
+            var structSize = Marshal.SizeOf<_CorsairLedPosition>();
+            var ptr = nativeLedPositions.pLedPosition;
+            for (var i = 0; i < nativeLedPositions.numberOfLed; i++)
             {
-                _CorsairLedPosition ledPosition = (_CorsairLedPosition)Marshal.PtrToStructure(ptr, typeof(_CorsairLedPosition));
+                var ledPosition = Marshal.PtrToStructure<_CorsairLedPosition>(ptr);
                 InitializeLed(ledPosition.ledId, new RectangleF((float)ledPosition.left, (float)ledPosition.top, (float)ledPosition.width, (float)ledPosition.height));
 
                 ptr = new IntPtr(ptr.ToInt64() + structSize);

@@ -17,19 +17,19 @@ namespace CUE.Net.ColorCorrection
 
         /// <summary>
         /// Gets or sets the gamma-value of the color 'red' used for color-correction.
-        /// Values greater than one will make colors brighter, values less than one will make colors darker. 
+        /// Values greater than one will make colors brighter, values less than one will make colors darker.
         /// </summary>
         public float R { get; set; }
 
         /// <summary>
         /// Gets or sets the gamma-value of the color 'green' used for color-correction.
-        /// Values greater than one will make colors brighter, values less than one will make colors darker. 
+        /// Values greater than one will make colors brighter, values less than one will make colors darker.
         /// </summary>
         public float G { get; set; }
 
         /// <summary>
         /// Gets or sets the gamma-value of the color 'blue' used for color-correction.
-        /// Values greater than one will make colors brighter, values less than one will make colors darker. 
+        /// Values greater than one will make colors brighter, values less than one will make colors darker.
         /// </summary>
         public float B { get; set; }
 
@@ -49,9 +49,9 @@ namespace CUE.Net.ColorCorrection
         /// Values greater than one will make colors brighter, values less than one will make colors darker.</param>
         public GammaCorrection(float gamma)
         {
-            this.R = gamma;
-            this.G = gamma;
-            this.B = gamma;
+            R = gamma;
+            G = gamma;
+            B = gamma;
         }
 
         /// <summary>
@@ -65,9 +65,9 @@ namespace CUE.Net.ColorCorrection
         /// greater than one will make colors brighter, values less than one will make colors darker.</param>
         public GammaCorrection(float r, float g, float b)
         {
-            this.R = r;
-            this.G = g;
-            this.B = b;
+            R = r;
+            G = g;
+            B = b;
         }
 
         #endregion
@@ -75,7 +75,7 @@ namespace CUE.Net.ColorCorrection
         #region Methods
 
         /// <summary>
-        /// Applies the gamma-correction to the given color. 
+        /// Applies the gamma-correction to the given color.
         /// </summary>
         /// <param name="color">The color to correct.</param>
         public void ApplyTo(CorsairColor color)
@@ -98,10 +98,7 @@ namespace CUE.Net.ColorCorrection
         /// Converts a <see cref="float" /> to a <see cref="GammaCorrection" /> using the same value for all colors.
         /// </summary>
         /// <param name="gamma">The float-value to convert.</param>
-        public static implicit operator GammaCorrection(float gamma)
-        {
-            return new GammaCorrection(gamma);
-        }
+        public static implicit operator GammaCorrection(float gamma) => new GammaCorrection(gamma);
 
         #endregion
     }

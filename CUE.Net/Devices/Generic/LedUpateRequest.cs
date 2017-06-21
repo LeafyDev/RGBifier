@@ -33,8 +33,8 @@ namespace CUE.Net.Devices.Generic
         /// <param name="color">The requested color of the led.</param>
         public LedUpateRequest(CorsairLedId ledId, CorsairColor color)
         {
-            this.LedId = ledId;
-            this.Color = color;
+            LedId = ledId;
+            Color = color;
         }
 
         #endregion

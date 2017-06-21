@@ -4,6 +4,7 @@
 
 using System.Diagnostics;
 using System.Drawing;
+// ReSharper disable NonReadonlyMemberInGetHashCode
 
 namespace CUE.Net.Devices.Generic
 {
@@ -56,7 +57,7 @@ namespace CUE.Net.Devices.Generic
         { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CorsairColor"/> class using only RGB-Values. 
+        /// Initializes a new instance of the <see cref="CorsairColor"/> class using only RGB-Values.
         /// Alpha defaults to 255.
         /// </summary>
         /// <param name="r">The red component value of this <see cref="CorsairColor"/>.</param>
@@ -75,10 +76,10 @@ namespace CUE.Net.Devices.Generic
         /// <param name="b">The blue component value of this <see cref="CorsairColor"/>.</param>
         public CorsairColor(byte a, byte r, byte g, byte b)
         {
-            this.A = a;
-            this.R = r;
-            this.G = g;
-            this.B = b;
+            A = a;
+            R = r;
+            G = g;
+            B = b;
         }
 
         /// <summary>
@@ -97,10 +98,8 @@ namespace CUE.Net.Devices.Generic
         /// Converts the individual byte-values of this <see cref="CorsairColor"/> to a human-readable string.
         /// </summary>
         /// <returns>A string that contains the individual byte-values of this <see cref="CorsairColor"/>. For example "[A: 255, R: 255, G: 0, B: 0]".</returns>
-        public override string ToString()
-        {
-            return $"[A: {A}, R: {R}, G: {G}, B: {B}]";
-        }
+        public override string ToString() => $"[A: {A}, R: {R}, G: {G}, B: {B}]";
+
         /// <summary>
         /// Tests whether the specified object is a <see cref="CorsairColor" /> and is equivalent to this <see cref="CorsairColor" />.
         /// </summary>
@@ -108,7 +107,7 @@ namespace CUE.Net.Devices.Generic
         /// <returns>true if <paramref name="obj" /> is a <see cref="CorsairColor" /> equivalent to this <see cref="CorsairColor" /> ; otherwise, false.</returns>
         public override bool Equals(object obj)
         {
-            CorsairColor compareColor = obj as CorsairColor;
+            var compareColor = obj as CorsairColor;
             if (ReferenceEquals(compareColor, null))
                 return false;
 
@@ -129,7 +128,7 @@ namespace CUE.Net.Devices.Generic
         {
             unchecked
             {
-                int hashCode = A.GetHashCode();
+                var hashCode = A.GetHashCode();
                 hashCode = (hashCode * 397) ^ R.GetHashCode();
                 hashCode = (hashCode * 397) ^ G.GetHashCode();
                 hashCode = (hashCode * 397) ^ B.GetHashCode();
@@ -143,10 +142,7 @@ namespace CUE.Net.Devices.Generic
         /// <param name="color1">The first <see cref="CorsairColor" /> color to compare.</param>
         /// <param name="color2">The second <see cref="CorsairColor" /> color to compare.</param>
         /// <returns>true if <paramref name="color1" /> and <paramref name="color2" /> are equal; otherwise, false.</returns>
-        public static bool operator ==(CorsairColor color1, CorsairColor color2)
-        {
-            return ReferenceEquals(color1, null) ? ReferenceEquals(color2, null) : color1.Equals(color2);
-        }
+        public static bool operator ==(CorsairColor color1, CorsairColor color2) => ReferenceEquals(color1, null) ? ReferenceEquals(color2, null) : color1.Equals(color2);
 
         /// <summary>
         /// Returns a value that indicates whether two specified <see cref="CorsairColor" /> are equal.
@@ -154,28 +150,19 @@ namespace CUE.Net.Devices.Generic
         /// <param name="color1">The first <see cref="CorsairColor" /> color to compare.</param>
         /// <param name="color2">The second <see cref="CorsairColor" /> color to compare.</param>
         /// <returns>true if <paramref name="color1" /> and <paramref name="color2" /> are not equal; otherwise, false.</returns>
-        public static bool operator !=(CorsairColor color1, CorsairColor color2)
-        {
-            return !(color1 == color2);
-        }
+        public static bool operator !=(CorsairColor color1, CorsairColor color2) => !(color1 == color2);
 
         /// <summary>
         /// Converts a <see cref="Color" /> to a <see cref="CorsairColor" />.
         /// </summary>
         /// <param name="color">The <see cref="Color"/> to convert.</param>
-        public static implicit operator CorsairColor(Color color)
-        {
-            return new CorsairColor(color.A, color.R, color.G, color.B);
-        }
+        public static implicit operator CorsairColor(Color color) => new CorsairColor(color.A, color.R, color.G, color.B);
 
         /// <summary>
         /// Converts a <see cref="CorsairColor" /> to a <see cref="Color" />.
         /// </summary>
         /// <param name="color">The <see cref="CorsairColor"/> to convert.</param>
-        public static implicit operator Color(CorsairColor color)
-        {
-            return Color.FromArgb(color.A, color.R, color.G, color.B);
-        }
+        public static implicit operator Color(CorsairColor color) => Color.FromArgb(color.A, color.R, color.G, color.B);
 
         #endregion
     }

@@ -37,9 +37,9 @@ namespace CUE.Net.Devices.Generic
         /// <param name="nativeInfo">The native <see cref="_CorsairDeviceInfo" />-struct</param>
         internal GenericDeviceInfo(_CorsairDeviceInfo nativeInfo)
         {
-            this.Type = nativeInfo.type;
-            this.Model = nativeInfo.model == IntPtr.Zero ? null : Marshal.PtrToStringAnsi(nativeInfo.model);
-            this.CapsMask = (CorsairDeviceCaps)nativeInfo.capsMask;
+            Type = nativeInfo.type;
+            Model = nativeInfo.model == IntPtr.Zero ? null : Marshal.PtrToStringAnsi(nativeInfo.model);
+            CapsMask = (CorsairDeviceCaps)nativeInfo.capsMask;
         }
 
         #endregion

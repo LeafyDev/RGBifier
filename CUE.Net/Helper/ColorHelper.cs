@@ -17,40 +17,28 @@ namespace CUE.Net.Helper
         /// </summary>
         /// <param name="color">The color to take the alpha-value from.</param>
         /// <returns>The float-value in the range of [0..1]</returns>
-        public static float GetFloatA(this CorsairColor color)
-        {
-            return color.A / 255f;
-        }
+        public static float GetFloatA(this CorsairColor color) => color.A / 255f;
 
         /// <summary>
         /// Converts the red-value of the <see cref="CorsairColor"/> to a float value in the range [0..1].
         /// </summary>
         /// <param name="color">The color to take the red-value from.</param>
         /// <returns>The float-value in the range of [0..1]</returns>
-        public static float GetFloatR(this CorsairColor color)
-        {
-            return color.R / 255f;
-        }
+        public static float GetFloatR(this CorsairColor color) => color.R / 255f;
 
         /// <summary>
         /// Converts the green-value of the <see cref="CorsairColor"/> to a float value in the range [0..1].
         /// </summary>
         /// <param name="color">The color to take the green-value from.</param>
         /// <returns>The float-value in the range of [0..1]</returns>
-        public static float GetFloatG(this CorsairColor color)
-        {
-            return color.G / 255f;
-        }
+        public static float GetFloatG(this CorsairColor color) => color.G / 255f;
 
         /// <summary>
         /// Converts the blue-value of the <see cref="CorsairColor"/> to a float value in the range [0..1].
         /// </summary>
         /// <param name="color">The color to take the blue-value from.</param>
         /// <returns>The float-value in the range of [0..1]</returns>
-        public static float GetFloatB(this CorsairColor color)
-        {
-            return color.B / 255f;
-        }
+        public static float GetFloatB(this CorsairColor color) => color.B / 255f;
 
         /// <summary>
         /// Creates a <see cref="CorsairColor"/> object from the respective rgb-float-values in the range [0..1].
@@ -60,10 +48,7 @@ namespace CUE.Net.Helper
         /// <param name="g">The green-value in the range [0..1].</param>
         /// <param name="b">The blue-value in the range [0..1].</param>
         /// <returns>The color-object created representing the given values.</returns>
-        public static CorsairColor CreateColorFromFloat(float a, float r, float g, float b)
-        {
-            return new CorsairColor(GetIntColorFromFloat(a), GetIntColorFromFloat(r), GetIntColorFromFloat(g), GetIntColorFromFloat(b));
-        }
+        public static CorsairColor CreateColorFromFloat(float a, float r, float g, float b) => new CorsairColor(GetIntColorFromFloat(a), GetIntColorFromFloat(r), GetIntColorFromFloat(g), GetIntColorFromFloat(b));
 
         /// <summary>
         /// Converts the given float-value to a integer-color in the range [0..255].
@@ -155,10 +140,7 @@ namespace CUE.Net.Helper
         /// </summary>
         /// <param name="color">The color to take the value from.</param>
         /// <returns>The value-value (HSV-color space) of the color.</returns>
-        public static float GetHSVValue(this CorsairColor color)
-        {
-            return Math.Max(color.R, Math.Max(color.G, color.B)) / 255f;
-        }
+        public static float GetHSVValue(this CorsairColor color) => Math.Max(color.R, Math.Max(color.G, color.B)) / 255f;
 
         // Based on http://stackoverflow.com/questions/3018313/algorithm-to-convert-rgb-to-hsv-and-hsv-to-rgb-in-range-0-255-for-both/6930407#6930407 as of 27.09.2015
         /// <summary>

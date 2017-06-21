@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CUE.Net.Devices.Generic;
+// ReSharper disable ClassNeverInstantiated.Global
 
 namespace CUE.Net.Gradients
 {

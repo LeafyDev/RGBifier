@@ -47,10 +47,7 @@ namespace CUE.Net.Brushes
         /// Initializes a new instance of the <see cref="ConicalGradientBrush"/> class.
         /// </summary>
         /// <param name="gradient">The gradient drawn by the brush.</param>
-        public ConicalGradientBrush(IGradient gradient)
-        {
-            this.Gradient = gradient;
-        }
+        public ConicalGradientBrush(IGradient gradient) => Gradient = gradient;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConicalGradientBrush"/> class.
@@ -59,8 +56,8 @@ namespace CUE.Net.Brushes
         /// <param name="gradient">The gradient drawn by the brush.</param>
         public ConicalGradientBrush(PointF center, IGradient gradient)
         {
-            this.Center = center;
-            this.Gradient = gradient;
+            Center = center;
+            Gradient = gradient;
         }
 
         /// <summary>
@@ -71,9 +68,9 @@ namespace CUE.Net.Brushes
         /// <param name="gradient">The gradient drawn by the brush.</param>
         public ConicalGradientBrush(PointF center, float origin, IGradient gradient)
         {
-            this.Center = center;
-            this.Origin = origin;
-            this.Gradient = gradient;
+            Center = center;
+            Origin = origin;
+            Gradient = gradient;
         }
 
         #endregion

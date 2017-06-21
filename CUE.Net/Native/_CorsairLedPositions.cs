@@ -4,6 +4,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+// ReSharper disable ClassNeverInstantiated.Global
 
 namespace CUE.Net.Native
 {

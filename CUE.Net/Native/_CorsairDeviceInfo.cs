@@ -5,6 +5,7 @@
 using System;
 using System.Runtime.InteropServices;
 using CUE.Net.Devices.Generic.Enums;
+// ReSharper disable ClassNeverInstantiated.Global
 
 namespace CUE.Net.Native
 {

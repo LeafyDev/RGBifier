@@ -2,6 +2,7 @@
 using System.Drawing;
 using CUE.Net.Devices.Generic;
 using CUE.Net.Devices.Generic.Enums;
+// ReSharper disable FieldCanBeMadeReadOnly.Local
 
 namespace CUE.Net.Brushes
 {
@@ -11,7 +12,7 @@ namespace CUE.Net.Brushes
     public class ProfileBrush : AbstractBrush
     {
         #region Properties & Fields
-        
+
         private Dictionary<CorsairLedId, CorsairColor> _colors;
 
         #endregion
@@ -22,10 +23,7 @@ namespace CUE.Net.Brushes
         /// Initializes a new instance of the <see cref="ProfileBrush"/> class.
         /// </summary>
         /// <param name="keyLights">The light settings of the CUE profile.</param>
-        internal ProfileBrush(Dictionary<CorsairLedId, CorsairColor> keyLights)
-        {
-            this._colors = keyLights;
-        }
+        internal ProfileBrush(Dictionary<CorsairLedId, CorsairColor> keyLights) => _colors = keyLights;
 
         #endregion
 

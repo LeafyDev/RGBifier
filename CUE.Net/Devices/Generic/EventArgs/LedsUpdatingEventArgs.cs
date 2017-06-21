@@ -25,10 +25,7 @@ namespace CUE.Net.Devices.Generic.EventArgs
         /// Initializes a new instance of the <see cref="LedsUpdatingEventArgs"/> class.
         /// </summary>
         /// <param name="updatingLeds">The updating leds.</param>
-        public LedsUpdatingEventArgs(ICollection<LedUpateRequest> updatingLeds)
-        {
-            this.UpdatingLeds = updatingLeds;
-        }
+        public LedsUpdatingEventArgs(ICollection<LedUpateRequest> updatingLeds) => UpdatingLeds = updatingLeds;
 
         #endregion
     }

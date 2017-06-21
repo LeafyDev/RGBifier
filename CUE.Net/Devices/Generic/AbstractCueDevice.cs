@@ -136,10 +136,7 @@ namespace CUE.Net.Devices.Generic
         /// Initializes a new instance of the <see cref="AbstractCueDevice"/> class.
         /// </summary>
         /// <param name="info">The generic information provided by CUE for the device.</param>
-        protected AbstractCueDevice(IDeviceInfo info)
-        {
-            this.DeviceInfo = info;
-        }
+        protected AbstractCueDevice(IDeviceInfo info) => DeviceInfo = info;
 
         #endregion
 
@@ -165,7 +162,7 @@ namespace CUE.Net.Devices.Generic
         {
             if (LedMapping.ContainsKey(ledId)) return null;
 
-            CorsairLed led = new CorsairLed(this, ledId, ledRectangle);
+            var led = new CorsairLed(this, ledId, ledRectangle);
             LedMapping.Add(ledId, led);
             return led;
         }
@@ -175,7 +172,7 @@ namespace CUE.Net.Devices.Generic
         /// </summary>
         internal void ResetLeds()
         {
-            foreach (CorsairLed led in LedMapping.Values)
+            foreach (var led in LedMapping.Values)
                 led.Reset();
         }
 
@@ -192,12 +189,12 @@ namespace CUE.Net.Devices.Generic
             OnUpdating();
 
             // Update effects
-            foreach (ILedGroup ledGroup in LedGroups)
+            foreach (var ledGroup in LedGroups)
                 ledGroup.UpdateEffects();
 
             // Render brushes
             Render(this);
-            foreach (ILedGroup ledGroup in LedGroups.OrderBy(x => x.ZIndex))
+            foreach (var ledGroup in LedGroups.OrderBy(x => x.ZIndex))
                 Render(ledGroup);
 
             // Device-specific updates
@@ -205,7 +202,7 @@ namespace CUE.Net.Devices.Generic
 
             // Send LEDs to SDK
             ICollection<LedUpateRequest> ledsToUpdate = (flushLeds ? LedMapping : LedMapping.Where(x => x.Value.IsDirty)).Select(x => new LedUpateRequest(x.Key, x.Value.RequestedColor)).ToList();
-            foreach (LedUpateRequest updateRequest in ledsToUpdate)
+            foreach (var updateRequest in ledsToUpdate)
                 LedMapping[updateRequest.LedId].Update();
 
             UpdateLeds(ledsToUpdate);
@@ -230,7 +227,7 @@ namespace CUE.Net.Devices.Generic
 
             IList<CorsairLed> leds = ledGroup.GetLeds().ToList();
 
-            IBrush brush = ledGroup.Brush;
+            var brush = ledGroup.Brush;
             if (brush == null) return;
 
             try
@@ -238,9 +235,9 @@ namespace CUE.Net.Devices.Generic
                 switch (brush.BrushCalculationMode)
                 {
                     case BrushCalculationMode.Relative:
-                        RectangleF brushRectangle = RectangleHelper.CreateRectangleFromRectangles(leds.Select(x => x.LedRectangle));
-                        float offsetX = -brushRectangle.X;
-                        float offsetY = -brushRectangle.Y;
+                        var brushRectangle = RectangleHelper.CreateRectangleFromRectangles(leds.Select(x => x.LedRectangle));
+                        var offsetX = -brushRectangle.X;
+                        var offsetY = -brushRectangle.Y;
                         brushRectangle.X = 0;
                         brushRectangle.Y = 0;
                         brush.PerformRender(brushRectangle, leds.Select(x => new BrushRenderTarget(x.Id, x.LedRectangle.Move(offsetX, offsetY))));
@@ -255,7 +252,7 @@ namespace CUE.Net.Devices.Generic
                 brush.UpdateEffects();
                 brush.PerformFinalize();
 
-                foreach (KeyValuePair<BrushRenderTarget, CorsairColor> renders in brush.RenderedTargets)
+                foreach (var renders in brush.RenderedTargets)
                     this[renders.Key.LedId].Color = renders.Value;
             }
             // ReSharper disable once CatchAllClause
@@ -270,19 +267,16 @@ namespace CUE.Net.Devices.Generic
 
             if (updateRequests.Any()) // CUE seems to crash if 'CorsairSetLedsColors' is called with a zero length array
             {
-                int structSize = Marshal.SizeOf(typeof(_CorsairLedColor));
-                IntPtr ptr = Marshal.AllocHGlobal(structSize * updateRequests.Count);
-                IntPtr addPtr = new IntPtr(ptr.ToInt64());
-                foreach (LedUpateRequest ledUpdateRequest in updateRequests)
+                var structSize = Marshal.SizeOf<_CorsairLedColor>();
+                var ptr = Marshal.AllocHGlobal(structSize * updateRequests.Count);
+                var addPtr = new IntPtr(ptr.ToInt64());
+                foreach(var color in updateRequests.Select(ledUpdateRequest => new _CorsairLedColor
                 {
-                    _CorsairLedColor color = new _CorsairLedColor
-                    {
-                        ledId = (int)ledUpdateRequest.LedId,
-                        r = ledUpdateRequest.Color.R,
-                        g = ledUpdateRequest.Color.G,
-                        b = ledUpdateRequest.Color.B
-                    };
-
+                    ledId = (int)ledUpdateRequest.LedId,
+                    r = ledUpdateRequest.Color.R,
+                    g = ledUpdateRequest.Color.G,
+                    b = ledUpdateRequest.Color.B
+                })) {
                     Marshal.StructureToPtr(color, addPtr, false);
                     addPtr = new IntPtr(addPtr.ToInt64() + structSize);
                 }
@@ -324,7 +318,7 @@ namespace CUE.Net.Devices.Generic
             {
                 if (ledGroup == null) return false;
 
-                LinkedListNode<ILedGroup> node = LedGroups.Find(ledGroup);
+                var node = LedGroups.Find(ledGroup);
                 if (node == null) return false;
 
                 LedGroups.Remove(node);
@@ -336,10 +330,7 @@ namespace CUE.Net.Devices.Generic
         /// Gets a list containing all LEDs of this group.
         /// </summary>
         /// <returns>The list containing all LEDs of this group.</returns>
-        public IEnumerable<CorsairLed> GetLeds()
-        {
-            return Leds;
-        }
+        public IEnumerable<CorsairLed> GetLeds() => Leds;
 
         #endregion
 
@@ -404,7 +395,7 @@ namespace CUE.Net.Devices.Generic
         {
             try
             {
-                long lastUpdateTicks = _lastUpdate.Ticks;
+                var lastUpdateTicks = _lastUpdate.Ticks;
                 _lastUpdate = DateTime.Now;
                 Updating?.Invoke(this, new UpdatingEventArgs((DateTime.Now.Ticks - lastUpdateTicks) / 10000000f));
             }
@@ -466,19 +457,13 @@ namespace CUE.Net.Devices.Generic
         /// Returns an enumerator that iterates over all LEDs of the device.
         /// </summary>
         /// <returns>An enumerator for all LEDs of the device.</returns>
-        public IEnumerator<CorsairLed> GetEnumerator()
-        {
-            return LedMapping.Values.GetEnumerator();
-        }
+        public IEnumerator<CorsairLed> GetEnumerator() => LedMapping.Values.GetEnumerator();
 
         /// <summary>
         /// Returns an enumerator that iterates over all LEDs of the device.
         /// </summary>
         /// <returns>An enumerator for all LEDs of the device.</returns>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         #endregion
 

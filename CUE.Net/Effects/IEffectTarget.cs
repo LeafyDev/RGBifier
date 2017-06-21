@@ -1,6 +1,7 @@
 ﻿// ReSharper disable UnusedMember.Global
 
 using System.Collections.Generic;
+// ReSharper disable UnusedMemberInSuper.Global
 
 namespace CUE.Net.Effects
 {

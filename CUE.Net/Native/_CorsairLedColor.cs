@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 
 namespace CUE.Net.Native
 {
-    // ReSharper disable once InconsistentNaming    
+    // ReSharper disable once InconsistentNaming
     /// <summary>
     /// CUE-SDK: contains information about led and its color
     /// </summary>

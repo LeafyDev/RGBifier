@@ -16,10 +16,7 @@ namespace CUE.Net.Helper
         /// <param name="offsetX">The offset for the x-value</param>
         /// <param name="offsetY">The offset for the y-value</param>
         /// <returns>The moved rectangle.</returns>
-        public static RectangleF Move(this RectangleF rectangle, float offsetX = 0f, float offsetY = 0f)
-        {
-            return new RectangleF(rectangle.X + offsetX, rectangle.Y + offsetY, rectangle.Width, rectangle.Height);
-        }
+        public static RectangleF Move(this RectangleF rectangle, float offsetX = 0f, float offsetY = 0f) => new RectangleF(rectangle.X + offsetX, rectangle.Y + offsetY, rectangle.Width, rectangle.Height);
 
         /// <summary>
         /// Calculates the center-point of a rectangle adding an offset.
@@ -28,10 +25,7 @@ namespace CUE.Net.Helper
         /// <param name="offsetX">The offset for the x-value</param>
         /// <param name="offsetY">The offset for the y-value</param>
         /// <returns>The center point of the rectangle.</returns>
-        public static PointF GetCenter(this RectangleF rectangle, float offsetX = 0f, float offsetY = 0f)
-        {
-            return new PointF((rectangle.Left + rectangle.Width / 2f) + offsetX, (rectangle.Top + rectangle.Height / 2f) + offsetY);
-        }
+        public static PointF GetCenter(this RectangleF rectangle, float offsetX = 0f, float offsetY = 0f) => new PointF((rectangle.Left + rectangle.Width / 2f) + offsetX, (rectangle.Top + rectangle.Height / 2f) + offsetY);
 
         /// <summary>
         /// Creates a rectangle from two corner points.

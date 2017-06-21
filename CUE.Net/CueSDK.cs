@@ -16,6 +16,8 @@ using CUE.Net.Devices.Mouse;
 using CUE.Net.Devices.Mousemat;
 using CUE.Net.Exceptions;
 using CUE.Net.Native;
+// ReSharper disable UnusedMember.Global
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace CUE.Net
 {

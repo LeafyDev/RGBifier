@@ -26,10 +26,7 @@ namespace CUE.Net.Brushes
         /// Initializes a new instance of the <see cref="SolidColorBrush"/> class.
         /// </summary>
         /// <param name="color">The color drawn by the brush.</param>
-        public SolidColorBrush(CorsairColor color)
-        {
-            this.Color = color;
-        }
+        public SolidColorBrush(CorsairColor color) => Color = color;
 
         #endregion
 
@@ -41,10 +38,7 @@ namespace CUE.Net.Brushes
         /// <param name="rectangle">The rectangle in which the brush should be drawn.</param>
         /// <param name="renderTarget">The target (key/point) from which the color should be taken.</param>
         /// <returns>The color at the specified point.</returns>
-        protected override CorsairColor GetColorAtPoint(RectangleF rectangle, BrushRenderTarget renderTarget)
-        {
-            return Color;
-        }
+        protected override CorsairColor GetColorAtPoint(RectangleF rectangle, BrushRenderTarget renderTarget) => Color;
 
         #endregion
 
@@ -54,37 +48,25 @@ namespace CUE.Net.Brushes
         /// Converts a <see cref="Color" /> to a <see cref="SolidColorBrush" />.
         /// </summary>
         /// <param name="color">The <see cref="Color"/> to convert.</param>
-        public static explicit operator SolidColorBrush(Color color)
-        {
-            return new SolidColorBrush(color);
-        }
+        public static explicit operator SolidColorBrush(Color color) => new SolidColorBrush(color);
 
         /// <summary>
         /// Converts a <see cref="SolidColorBrush" /> to a <see cref="Color" />.
         /// </summary>
         /// <param name="brush">The <see cref="Color"/> to convert.</param>
-        public static implicit operator Color(SolidColorBrush brush)
-        {
-            return brush.Color;
-        }
+        public static implicit operator Color(SolidColorBrush brush) => brush.Color;
 
         /// <summary>
         /// Converts a <see cref="CorsairColor" /> to a <see cref="SolidColorBrush" />.
         /// </summary>
         /// <param name="color">The <see cref="Color"/> to convert.</param>
-        public static explicit operator SolidColorBrush(CorsairColor color)
-        {
-            return new SolidColorBrush(color);
-        }
+        public static explicit operator SolidColorBrush(CorsairColor color) => new SolidColorBrush(color);
 
         /// <summary>
         /// Converts a <see cref="SolidColorBrush" /> to a <see cref="CorsairColor" />.
         /// </summary>
         /// <param name="brush">The <see cref="Color"/> to convert.</param>
-        public static implicit operator CorsairColor(SolidColorBrush brush)
-        {
-            return brush.Color;
-        }
+        public static implicit operator CorsairColor(SolidColorBrush brush) => brush.Color;
 
         #endregion
     }

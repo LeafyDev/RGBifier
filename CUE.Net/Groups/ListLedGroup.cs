@@ -2,6 +2,8 @@
 // ReSharper disable UnusedMember.Global
 
 using System.Collections.Generic;
+using System.Linq;
+
 using CUE.Net.Devices;
 using CUE.Net.Devices.Generic;
 using CUE.Net.Devices.Generic.Enums;
@@ -152,9 +154,8 @@ namespace CUE.Net.Groups
         {
             if (leds == null) return;
 
-            foreach (CorsairLed led in leds)
-                if (led != null && !ContainsLed(led))
-                    GroupLeds.Add(led);
+            foreach(var led in leds.Where(led => led != null && !ContainsLed(led)))
+                GroupLeds.Add(led);
         }
 
         /// <summary>
@@ -165,7 +166,7 @@ namespace CUE.Net.Groups
         {
             if (ledIds == null) return;
 
-            foreach (CorsairLedId ledId in ledIds)
+            foreach (var ledId in ledIds)
                 AddLed(Device[ledId]);
         }
 
@@ -195,9 +196,8 @@ namespace CUE.Net.Groups
         {
             if (leds == null) return;
 
-            foreach (CorsairLed led in leds)
-                if (led != null)
-                    GroupLeds.Remove(led);
+            foreach(var led in leds.Where(led => led != null))
+                GroupLeds.Remove(led);
         }
 
         /// <summary>
@@ -208,7 +208,7 @@ namespace CUE.Net.Groups
         {
             if (ledIds == null) return;
 
-            foreach (CorsairLedId ledId in ledIds)
+            foreach (var ledId in ledIds)
                 RemoveLed(Device[ledId]);
         }
 
@@ -217,40 +217,30 @@ namespace CUE.Net.Groups
         /// </summary>
         /// <param name="led">The LED which should be checked.</param>
         /// <returns><c>true</c> if the LED is contained by this ledgroup; otherwise, <c>false</c>.</returns>
-        public bool ContainsLed(CorsairLed led)
-        {
-            return led != null && GroupLeds.Contains(led);
-        }
+        public bool ContainsLed(CorsairLed led) => led != null && GroupLeds.Contains(led);
 
         /// <summary>
         /// Checks if a given LED is contained by this ledgroup.
         /// </summary>
         /// <param name="ledId">The ID of the LED which should be checked.</param>
         /// <returns><c>true</c> if the LED is contained by this ledgroup; otherwise, <c>false</c>.</returns>
-        public bool ContainsLed(CorsairLedId ledId)
-        {
-            return ContainsLed(Device[ledId]);
-        }
+        public bool ContainsLed(CorsairLedId ledId) => ContainsLed(Device[ledId]);
 
         /// <summary>
-        /// Merges the LEDs from the given ledgroup in this ledgroup. 
+        /// Merges the LEDs from the given ledgroup in this ledgroup.
         /// </summary>
         /// <param name="groupToMerge">The ledgroup to merge.</param>
         public void MergeLeds(ILedGroup groupToMerge)
         {
-            foreach (CorsairLed led in groupToMerge.GetLeds())
-                if (!GroupLeds.Contains(led))
-                    GroupLeds.Add(led);
+            foreach(var led in groupToMerge.GetLeds().Where(led => !GroupLeds.Contains(led)))
+                GroupLeds.Add(led);
         }
 
         /// <summary>
         /// Gets a list containing the LEDs from this group.
         /// </summary>
         /// <returns>The list containing the LEDs.</returns>
-        public override IEnumerable<CorsairLed> GetLeds()
-        {
-            return GroupLeds;
-        }
+        public override IEnumerable<CorsairLed> GetLeds() => GroupLeds;
 
         #endregion
     }

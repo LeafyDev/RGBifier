@@ -1,5 +1,6 @@
 ﻿using CUE.Net.Brushes;
 using CUE.Net.Gradients;
+// ReSharper disable UnusedMember.Global
 
 namespace CUE.Net.Effects
 {
@@ -39,8 +40,8 @@ namespace CUE.Net.Effects
         /// <param name="direction"></param>
         public MoveGradientEffect(float speed = 180f, bool direction = true)
         {
-            this.Speed = speed;
-            this.Direction = direction;
+            Speed = speed;
+            Direction = direction;
         }
 
         #endregion
@@ -83,7 +84,7 @@ namespace CUE.Net.Effects
 
                 rainbowGradient.StartHue += movement;
                 rainbowGradient.EndHue += movement;
-                
+
                 if (rainbowGradient.StartHue > 360f && rainbowGradient.EndHue > 360f)
                 {
                     rainbowGradient.StartHue -= 360f;

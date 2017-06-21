@@ -4,6 +4,7 @@
 using CUE.Net.Devices.Generic;
 using CUE.Net.Devices.Keyboard.Enums;
 using CUE.Net.Native;
+// ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
 
 namespace CUE.Net.Devices.Keyboard
 {
@@ -35,8 +36,8 @@ namespace CUE.Net.Devices.Keyboard
         internal CorsairKeyboardDeviceInfo(_CorsairDeviceInfo nativeInfo)
             : base(nativeInfo)
         {
-            this.PhysicalLayout = (CorsairPhysicalKeyboardLayout)nativeInfo.physicalLayout;
-            this.LogicalLayout = (CorsairLogicalKeyboardLayout)nativeInfo.logicalLayout;
+            PhysicalLayout = (CorsairPhysicalKeyboardLayout)nativeInfo.physicalLayout;
+            LogicalLayout = (CorsairLogicalKeyboardLayout)nativeInfo.logicalLayout;
         }
 
         #endregion

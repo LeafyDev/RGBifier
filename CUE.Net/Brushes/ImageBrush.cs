@@ -59,7 +59,7 @@ namespace CUE.Net.Brushes
         #endregion
 
         #region Methods
-        
+
         /// <summary>
         /// Gets the color at an specific point assuming the brush is drawn into the given rectangle.
         /// </summary>

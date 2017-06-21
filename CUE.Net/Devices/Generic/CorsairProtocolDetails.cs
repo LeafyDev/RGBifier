@@ -54,11 +54,11 @@ namespace CUE.Net.Devices.Generic
         /// <param name="nativeDetails">The native CorsairProtocolDetails-struct</param>
         internal CorsairProtocolDetails(_CorsairProtocolDetails nativeDetails)
         {
-            this.SdkVersion = nativeDetails.sdkVersion == IntPtr.Zero ? null : Marshal.PtrToStringAnsi(nativeDetails.sdkVersion);
-            this.ServerVersion = nativeDetails.serverVersion == IntPtr.Zero ? null : Marshal.PtrToStringAnsi(nativeDetails.serverVersion);
-            this.SdkProtocolVersion = nativeDetails.sdkProtocolVersion;
-            this.ServerProtocolVersion = nativeDetails.serverProtocolVersion;
-            this.BreakingChanges = nativeDetails.breakingChanges != 0;
+            SdkVersion = nativeDetails.sdkVersion == IntPtr.Zero ? null : Marshal.PtrToStringAnsi(nativeDetails.sdkVersion);
+            ServerVersion = nativeDetails.serverVersion == IntPtr.Zero ? null : Marshal.PtrToStringAnsi(nativeDetails.serverVersion);
+            SdkProtocolVersion = nativeDetails.sdkProtocolVersion;
+            ServerProtocolVersion = nativeDetails.serverProtocolVersion;
+            BreakingChanges = nativeDetails.breakingChanges != 0;
         }
 
         #endregion

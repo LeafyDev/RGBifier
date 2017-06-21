@@ -40,8 +40,8 @@ namespace CUE.Net.Brushes
         /// <param name="rectangle">The rectangle representing the area to render the target-LED.</param>
         public BrushRenderTarget(CorsairLedId ledId, RectangleF rectangle)
         {
-            this.Rectangle = rectangle;
-            this.LedId = ledId;
+            Rectangle = rectangle;
+            LedId = ledId;
 
             Point = rectangle.GetCenter();
         }

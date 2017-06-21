@@ -37,10 +37,7 @@ namespace CUE.Net.Effects
         /// </summary>
         /// <param name="target">The <see cref="IEffectTarget{T}"/> this effect is attached to.</param>
         /// <returns><c>true</c> if the effect can be attached; otherwise, <c>false</c>.</returns>
-        public virtual bool CanBeAppliedTo(IBrush target)
-        {
-            return target is T;
-        }
+        public virtual bool CanBeAppliedTo(IBrush target) => target is T;
 
         /// <summary>
         /// Hook which is called when the effect is attached to a device.

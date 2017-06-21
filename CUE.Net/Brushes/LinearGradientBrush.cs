@@ -48,10 +48,8 @@ namespace CUE.Net.Brushes
         /// Initializes a new instance of the <see cref="LinearGradientBrush"/> class.
         /// </summary>
         /// <param name="gradient">The gradient drawn by the brush.</param>
-        public LinearGradientBrush(IGradient gradient)
-        {
-            this.Gradient = gradient;
-        }
+        public LinearGradientBrush(IGradient gradient) => Gradient = gradient;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="LinearGradientBrush"/> class.
         /// </summary>
@@ -60,9 +58,9 @@ namespace CUE.Net.Brushes
         /// <param name="gradient">The gradient drawn by the brush.</param>
         public LinearGradientBrush(PointF startPoint, PointF endPoint, IGradient gradient)
         {
-            this.StartPoint = startPoint;
-            this.EndPoint = endPoint;
-            this.Gradient = gradient;
+            StartPoint = startPoint;
+            EndPoint = endPoint;
+            Gradient = gradient;
         }
 
         #endregion

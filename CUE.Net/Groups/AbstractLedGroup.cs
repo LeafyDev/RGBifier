@@ -45,7 +45,7 @@ namespace CUE.Net.Groups
         /// <param name="autoAttach">Specifies whether this group should be automatically attached or not.</param>
         protected AbstractLedGroup(ICueDevice device, bool autoAttach = true)
         {
-            this.Device = device;
+            Device = device;
 
             if (autoAttach)
                 this.Attach();

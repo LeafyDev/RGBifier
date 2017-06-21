@@ -25,10 +25,7 @@ namespace CUE.Net.Devices.Generic.EventArgs
         /// Initializes a new instance of the <see cref="ExceptionEventArgs"/> class.
         /// </summary>
         /// <param name="exception">The exception which is responsible for the event-call.</param>
-        public ExceptionEventArgs(Exception exception)
-        {
-            this.Exception = exception;
-        }
+        public ExceptionEventArgs(Exception exception) => Exception = exception;
 
         #endregion
     }

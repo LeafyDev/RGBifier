@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+// ReSharper disable FieldCanBeMadeReadOnly.Local
 
 namespace CUE.Net.Profiles
 {
@@ -115,7 +116,7 @@ namespace CUE.Net.Profiles
                         _profileNameMapping.Add(name, id);
                 }
             }
-            // ReSharper disable once CatchAllClause - This shouldn't happen but you never know ... 
+            // ReSharper disable once CatchAllClause - This shouldn't happen but you never know ...
             catch
             {
                 _profileNameMapping.Clear();

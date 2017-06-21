@@ -48,7 +48,7 @@ namespace CUE.Net.Devices.Generic
         /// </summary>
         public CorsairColor Color
         {
-            get { return _color; }
+            get => _color;
             set
             {
                 if (!IsLocked)
@@ -73,9 +73,9 @@ namespace CUE.Net.Devices.Generic
         /// <param name="ledRectangle">The rectangle representing the physical location of the <see cref="CorsairLed"/>.</param>
         internal CorsairLed(ICueDevice device, CorsairLedId id, RectangleF ledRectangle)
         {
-            this.Device = device;
-            this.Id = id;
-            this.LedRectangle = ledRectangle;
+            Device = device;
+            Id = id;
+            LedRectangle = ledRectangle;
         }
 
         #endregion
@@ -86,10 +86,7 @@ namespace CUE.Net.Devices.Generic
         /// Converts the Id and the <see cref="Color"/> of this <see cref="CorsairLed"/> to a human-readable string.
         /// </summary>
         /// <returns>A string that contains the Id and the <see cref="Color"/> of this <see cref="CorsairLed"/>. For example "Enter [A: 255, R: 255, G: 0, B: 0]".</returns>
-        public override string ToString()
-        {
-            return $"{Id} {Color}";
-        }
+        public override string ToString() => $"{Id} {Color}";
 
         /// <summary>
         /// Updates the LED to the requested color.
@@ -117,19 +114,13 @@ namespace CUE.Net.Devices.Generic
         /// Converts a <see cref="CorsairLed" /> to a <see cref="CorsairLedId" />.
         /// </summary>
         /// <param name="led">The <see cref="CorsairLed"/> to convert.</param>
-        public static implicit operator CorsairLedId(CorsairLed led)
-        {
-            return led?.Id ?? CorsairLedId.Invalid;
-        }
+        public static implicit operator CorsairLedId(CorsairLed led) => led?.Id ?? CorsairLedId.Invalid;
 
         /// <summary>
         /// Converts a <see cref="CorsairLed" /> to a <see cref="CorsairColor" />.
         /// </summary>
         /// <param name="led">The <see cref="CorsairLed"/> to convert.</param>
-        public static implicit operator CorsairColor(CorsairLed led)
-        {
-            return led?.Color;
-        }
+        public static implicit operator CorsairColor(CorsairLed led) => led?.Color;
 
         #endregion
     }

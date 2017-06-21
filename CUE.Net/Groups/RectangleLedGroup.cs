@@ -27,7 +27,7 @@ namespace CUE.Net.Groups
         /// </summary>
         public RectangleF Rectangle
         {
-            get { return _rectangle; }
+            get => _rectangle;
             set
             {
                 _rectangle = value;
@@ -41,7 +41,7 @@ namespace CUE.Net.Groups
         /// </summary>
         public float MinOverlayPercentage
         {
-            get { return _minOverlayPercentage; }
+            get => _minOverlayPercentage;
             set
             {
                 _minOverlayPercentage = value;
@@ -99,8 +99,8 @@ namespace CUE.Net.Groups
         public RectangleLedGroup(ICueDevice device, RectangleF rectangle, float minOverlayPercentage = 0.5f, bool autoAttach = true)
             : base(device, autoAttach)
         {
-            this.Rectangle = rectangle;
-            this.MinOverlayPercentage = minOverlayPercentage;
+            Rectangle = rectangle;
+            MinOverlayPercentage = minOverlayPercentage;
         }
 
         #endregion

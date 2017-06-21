@@ -72,9 +72,6 @@ namespace CUE.Net.Helper
         /// <param name="point1">The first point.</param>
         /// <param name="point2">The second point.</param>
         /// <returns>The distance between the two points.</returns>
-        public static float CalculateDistance(PointF point1, PointF point2)
-        {
-            return (float)Math.Sqrt((point1.Y - point2.Y) * (point1.Y - point2.Y) + (point1.X - point2.X) * (point1.X - point2.X));
-        }
+        public static float CalculateDistance(PointF point1, PointF point2) => (float)Math.Sqrt((point1.Y - point2.Y) * (point1.Y - point2.Y) + (point1.X - point2.X) * (point1.X - point2.X));
     }
 }

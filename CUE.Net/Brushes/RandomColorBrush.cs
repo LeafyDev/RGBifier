@@ -4,6 +4,7 @@ using System;
 using System.Drawing;
 using CUE.Net.Devices.Generic;
 using CUE.Net.Helper;
+// ReSharper disable FieldCanBeMadeReadOnly.Local
 
 namespace CUE.Net.Brushes
 {
@@ -15,7 +16,7 @@ namespace CUE.Net.Brushes
     public class RandomColorBrush : AbstractBrush
     {
         #region Properties & Fields
-        
+
         private Random _random = new Random();
 
         #endregion
@@ -28,10 +29,7 @@ namespace CUE.Net.Brushes
         /// <param name="rectangle">The rectangle in which the brush should be drawn.</param>
         /// <param name="renderTarget">The target (key/point) from which the color should be taken.</param>
         /// <returns>The color at the specified point.</returns>
-        protected override CorsairColor GetColorAtPoint(RectangleF rectangle, BrushRenderTarget renderTarget)
-        {
-            return ColorHelper.ColorFromHSV((float)_random.NextDouble() * 360f, 1, 1);
-        }
+        protected override CorsairColor GetColorAtPoint(RectangleF rectangle, BrushRenderTarget renderTarget) => ColorHelper.ColorFromHSV((float)_random.NextDouble() * 360f, 1, 1);
 
         #endregion
     }

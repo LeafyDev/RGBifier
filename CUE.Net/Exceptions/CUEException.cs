@@ -26,10 +26,7 @@ namespace CUE.Net.Exceptions
         /// Initializes a new instance of the <see cref="CUEException"/> class.
         /// </summary>
         /// <param name="error">The <see cref="CorsairError" /> provided by CUE, which leads to this exception.</param>
-        public CUEException(CorsairError error)
-        {
-            this.Error = error;
-        }
+        public CUEException(CorsairError error) => Error = error;
 
         #endregion
     }

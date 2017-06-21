@@ -8,7 +8,7 @@ namespace CUE.Net.ColorCorrection
     public interface IColorCorrection
     {
         /// <summary>
-        /// Applies the color-correction to the given color. 
+        /// Applies the color-correction to the given color.
         /// </summary>
         /// <param name="color">The color to correct.</param>
         void ApplyTo(CorsairColor color);
