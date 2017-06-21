@@ -1,4 +1,6 @@
-﻿// ReSharper disable MemberCanBePrivate.Global
+﻿// ---------------------------------------------------------
+// Copyrights (c) 2014-2017 Seditio 🍂 All rights reserved.
+// ---------------------------------------------------------
 
 using System;
 using System.Drawing;
@@ -6,13 +8,13 @@ using System.Drawing;
 namespace CUE.Net.Helper
 {
     /// <summary>
-    /// Offers some extensions and helper-methods for gradient related things.
+    ///   Offers some extensions and helper-methods for gradient related things.
     /// </summary>
     public static class GradientHelper
     {
         // Based on https://dotupdate.wordpress.com/2008/01/28/find-the-color-of-a-point-in-a-lineargradientbrush/
         /// <summary>
-        /// Calculates the offset of an given point on an gradient.
+        ///   Calculates the offset of an given point on an gradient.
         /// </summary>
         /// <param name="startPoint">The start point of the gradient.</param>
         /// <param name="endPoint">The end point of the gradient.</param>
@@ -21,35 +23,35 @@ namespace CUE.Net.Helper
         public static float CalculateLinearGradientOffset(PointF startPoint, PointF endPoint, PointF point)
         {
             PointF intersectingPoint;
-            if (startPoint.Y.Equals(endPoint.Y)) // Horizontal case
+            if(startPoint.Y.Equals(endPoint.Y)) // Horizontal case
                 intersectingPoint = new PointF(point.X, startPoint.Y);
 
-            else if (startPoint.X.Equals(endPoint.X)) // Vertical case
+            else if(startPoint.X.Equals(endPoint.X)) // Vertical case
                 intersectingPoint = new PointF(startPoint.X, point.Y);
 
             else // Diagonal case
             {
-                float slope = (endPoint.Y - startPoint.Y) / (endPoint.X - startPoint.X);
-                float orthogonalSlope = -1 / slope;
+                var slope = (endPoint.Y - startPoint.Y) / (endPoint.X - startPoint.X);
+                var orthogonalSlope = -1 / slope;
 
-                float startYIntercept = startPoint.Y - slope * startPoint.X;
-                float pointYIntercept = point.Y - orthogonalSlope * point.X;
+                var startYIntercept = startPoint.Y - slope * startPoint.X;
+                var pointYIntercept = point.Y - orthogonalSlope * point.X;
 
-                float intersectingPointX = (pointYIntercept - startYIntercept) / (slope - orthogonalSlope);
-                float intersectingPointY = slope * intersectingPointX + startYIntercept;
+                var intersectingPointX = (pointYIntercept - startYIntercept) / (slope - orthogonalSlope);
+                var intersectingPointY = slope * intersectingPointX + startYIntercept;
                 intersectingPoint = new PointF(intersectingPointX, intersectingPointY);
             }
 
             // Calculate distances relative to the vector start
-            float intersectDistance = CalculateDistance(intersectingPoint, startPoint, endPoint);
-            float gradientLength = CalculateDistance(endPoint, startPoint, endPoint);
+            var intersectDistance = CalculateDistance(intersectingPoint, startPoint, endPoint);
+            var gradientLength = CalculateDistance(endPoint, startPoint, endPoint);
 
             return intersectDistance / gradientLength;
         }
 
         // Based on https://dotupdate.wordpress.com/2008/01/28/find-the-color-of-a-point-in-a-lineargradientbrush/
         /// <summary>
-        /// Returns the signed magnitude of a point on a vector.
+        ///   Returns the signed magnitude of a point on a vector.
         /// </summary>
         /// <param name="point">The point on the vector of which the magnitude should be calculated.</param>
         /// <param name="origin">The origin of the vector.</param>
@@ -57,21 +59,20 @@ namespace CUE.Net.Helper
         /// <returns>The signed magnitude of a point on a vector.</returns>
         public static float CalculateDistance(PointF point, PointF origin, PointF direction)
         {
-            float distance = CalculateDistance(point, origin);
+            var distance = CalculateDistance(point, origin);
 
-            return (((point.Y < origin.Y) && (direction.Y > origin.Y)) ||
-                ((point.Y > origin.Y) && (direction.Y < origin.Y)) ||
-                ((point.Y.Equals(origin.Y)) && (point.X < origin.X) && (direction.X > origin.X)) ||
-                ((point.Y.Equals(origin.Y)) && (point.X > origin.X) && (direction.X < origin.X)))
-                ? -distance : distance;
+            return point.Y < origin.Y && direction.Y > origin.Y || point.Y > origin.Y && direction.Y < origin.Y
+                   || point.Y.Equals(origin.Y) && point.X < origin.X && direction.X > origin.X
+                   || point.Y.Equals(origin.Y) && point.X > origin.X && direction.X < origin.X ? -distance : distance;
         }
 
         /// <summary>
-        /// Calculated the distance between two points.
+        ///   Calculated the distance between two points.
         /// </summary>
         /// <param name="point1">The first point.</param>
         /// <param name="point2">The second point.</param>
         /// <returns>The distance between the two points.</returns>
-        public static float CalculateDistance(PointF point1, PointF point2) => (float)Math.Sqrt((point1.Y - point2.Y) * (point1.Y - point2.Y) + (point1.X - point2.X) * (point1.X - point2.X));
+        public static float CalculateDistance(PointF point1, PointF point2) => (float) Math.Sqrt(
+            (point1.Y - point2.Y) * (point1.Y - point2.Y) + (point1.X - point2.X) * (point1.X - point2.X));
     }
 }

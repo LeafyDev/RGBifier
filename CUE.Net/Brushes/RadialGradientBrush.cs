@@ -1,9 +1,10 @@
-﻿// ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
-// ReSharper disable UnusedMember.Global
+﻿// ---------------------------------------------------------
+// Copyrights (c) 2014-2017 Seditio 🍂 All rights reserved.
+// ---------------------------------------------------------
 
 using System;
 using System.Drawing;
+
 using CUE.Net.Devices.Generic;
 using CUE.Net.Gradients;
 using CUE.Net.Helper;
@@ -11,19 +12,51 @@ using CUE.Net.Helper;
 namespace CUE.Net.Brushes
 {
     /// <summary>
-    /// Represents a brush drawing a radial gradient around a center point.
+    ///   Represents a brush drawing a radial gradient around a center point.
     /// </summary>
     public class RadialGradientBrush : AbstractBrush, IGradientBrush
     {
+        #region Methods
+
+        /// <summary>
+        ///   Gets the color at an specific point assuming the brush is drawn into the given rectangle.
+        /// </summary>
+        /// <param name="rectangle">The rectangle in which the brush should be drawn.</param>
+        /// <param name="renderTarget">The target (key/point) from which the color should be taken.</param>
+        /// <returns>The color at the specified point.</returns>
+        protected override CorsairColor GetColorAtPoint(RectangleF rectangle, BrushRenderTarget renderTarget)
+        {
+            if(Gradient == null)
+                return CorsairColor.Transparent;
+
+            var centerPoint = new PointF(rectangle.X + rectangle.Width * Center.X, rectangle.Y + rectangle.Height * Center.Y);
+
+            // Calculate the distance to the farthest point from the center as reference (this has to be a corner)
+            // ReSharper disable once RedundantCast - never trust this ...
+            var refDistance =
+                (float) Math.Max(
+                    Math.Max(
+                        Math.Max(GradientHelper.CalculateDistance(rectangle.Location, centerPoint),
+                            GradientHelper.CalculateDistance(new PointF(rectangle.X + rectangle.Width, rectangle.Y), centerPoint)),
+                        GradientHelper.CalculateDistance(new PointF(rectangle.X, rectangle.Y + rectangle.Height), centerPoint)),
+                    GradientHelper.CalculateDistance(new PointF(rectangle.X + rectangle.Width, rectangle.Y + rectangle.Height), centerPoint));
+
+            var distance = GradientHelper.CalculateDistance(renderTarget.Point, centerPoint);
+            var offset = distance / refDistance;
+            return Gradient.GetColor(offset);
+        }
+
+        #endregion
+
         #region Properties & Fields
 
         /// <summary>
-        /// Gets or sets the center point (as percentage in the range [0..1]) around which the brush should be drawn.
+        ///   Gets or sets the center point (as percentage in the range [0..1]) around which the brush should be drawn.
         /// </summary>
         public PointF Center { get; set; } = new PointF(0.5f, 0.5f);
 
         /// <summary>
-        /// Gets or sets the gradient drawn by the brush. If null it will default to full transparent.
+        ///   Gets or sets the gradient drawn by the brush. If null it will default to full transparent.
         /// </summary>
         public IGradient Gradient { get; set; }
 
@@ -32,19 +65,18 @@ namespace CUE.Net.Brushes
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RadialGradientBrush"/> class.
+        ///   Initializes a new instance of the <see cref="RadialGradientBrush" /> class.
         /// </summary>
-        public RadialGradientBrush()
-        { }
+        public RadialGradientBrush() { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RadialGradientBrush"/> class.
+        ///   Initializes a new instance of the <see cref="RadialGradientBrush" /> class.
         /// </summary>
         /// <param name="gradient">The gradient drawn by the brush.</param>
         public RadialGradientBrush(IGradient gradient) => Gradient = gradient;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RadialGradientBrush"/> class.
+        ///   Initializes a new instance of the <see cref="RadialGradientBrush" /> class.
         /// </summary>
         /// <param name="center">The center point (as percentage in the range [0..1]).</param>
         /// <param name="gradient">The gradient drawn by the brush.</param>
@@ -52,34 +84,6 @@ namespace CUE.Net.Brushes
         {
             Center = center;
             Gradient = gradient;
-        }
-
-        #endregion
-
-        #region Methods
-
-        /// <summary>
-        /// Gets the color at an specific point assuming the brush is drawn into the given rectangle.
-        /// </summary>
-        /// <param name="rectangle">The rectangle in which the brush should be drawn.</param>
-        /// <param name="renderTarget">The target (key/point) from which the color should be taken.</param>
-        /// <returns>The color at the specified point.</returns>
-        protected override CorsairColor GetColorAtPoint(RectangleF rectangle, BrushRenderTarget renderTarget)
-        {
-            if(Gradient == null) return CorsairColor.Transparent;
-
-            PointF centerPoint = new PointF(rectangle.X + rectangle.Width * Center.X, rectangle.Y + rectangle.Height * Center.Y);
-
-            // Calculate the distance to the farthest point from the center as reference (this has to be a corner)
-            // ReSharper disable once RedundantCast - never trust this ...
-            float refDistance = (float)Math.Max(Math.Max(Math.Max(GradientHelper.CalculateDistance(rectangle.Location, centerPoint),
-                GradientHelper.CalculateDistance(new PointF(rectangle.X + rectangle.Width, rectangle.Y), centerPoint)),
-                GradientHelper.CalculateDistance(new PointF(rectangle.X, rectangle.Y + rectangle.Height), centerPoint)),
-                GradientHelper.CalculateDistance(new PointF(rectangle.X + rectangle.Width, rectangle.Y + rectangle.Height), centerPoint));
-
-            float distance = GradientHelper.CalculateDistance(renderTarget.Point, centerPoint);
-            float offset = distance / refDistance;
-            return Gradient.GetColor(offset);
         }
 
         #endregion
