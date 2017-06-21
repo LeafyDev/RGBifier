@@ -8,6 +8,9 @@ using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 
+// ReSharper disable UnusedMember.Global
+// ReSharper disable MemberCanBePrivate.Global
+
 // ReSharper disable FieldCanBeMadeReadOnly.Local
 
 namespace CUE.Net.Profiles

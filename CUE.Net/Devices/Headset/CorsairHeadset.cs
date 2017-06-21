@@ -1,42 +1,42 @@
-﻿// ReSharper disable UnusedAutoPropertyAccessor.Global
-// ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable UnusedMember.Global
+﻿// ---------------------------------------------------------
+// Copyrights (c) 2014-2017 Seditio 🍂 All rights reserved.
+// ---------------------------------------------------------
 
 using System.Drawing;
+
 using CUE.Net.Devices.Generic;
 using CUE.Net.Devices.Headset.Enums;
 
 namespace CUE.Net.Devices.Headset
 {
     /// <summary>
-    /// Represents the SDK for a corsair headset.
+    ///   Represents the SDK for a corsair headset.
     /// </summary>
     public class CorsairHeadset : AbstractCueDevice
     {
-        #region Properties & Fields
-
-        /// <summary>
-        /// Gets specific information provided by CUE for the headset.
-        /// </summary>
-        public CorsairHeadsetDeviceInfo HeadsetDeviceInfo { get; }
-
-        #endregion
-
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CorsairHeadset"/> class.
+        ///   Initializes a new instance of the <see cref="CorsairHeadset" /> class.
         /// </summary>
         /// <param name="info">The specific information provided by CUE for the headset</param>
-        internal CorsairHeadset(CorsairHeadsetDeviceInfo info)
-            : base(info) => HeadsetDeviceInfo = info;
+        internal CorsairHeadset(CorsairHeadsetDeviceInfo info) : base(info) => HeadsetDeviceInfo = info;
+
+        #endregion
+
+        #region Properties & Fields
+
+        /// <summary>
+        ///   Gets specific information provided by CUE for the headset.
+        /// </summary>
+        public CorsairHeadsetDeviceInfo HeadsetDeviceInfo { get; }
 
         #endregion
 
         #region Methods
 
         /// <summary>
-        /// Initializes the the headset.
+        ///   Initializes the the headset.
         /// </summary>
         public override void Initialize()
         {

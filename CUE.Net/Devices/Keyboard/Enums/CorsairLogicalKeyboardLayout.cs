@@ -1,12 +1,14 @@
-﻿// ReSharper disable InconsistentNaming
-// ReSharper disable UnusedMember.Global
+﻿// ---------------------------------------------------------
+// Copyrights (c) 2014-2017 Seditio 🍂 All rights reserved.
+// ---------------------------------------------------------
+
 
 #pragma warning disable 1591 // Missing XML comment for publicly visible type or member
 
 namespace CUE.Net.Devices.Keyboard.Enums
 {
     /// <summary>
-    /// Contains list of available logical layouts for keyboards.
+    ///   Contains list of available logical layouts for keyboards.
     /// </summary>
     public enum CorsairLogicalKeyboardLayout
     {
@@ -28,5 +30,5 @@ namespace CUE.Net.Devices.Keyboard.Enums
         KR = 16,
         TW = 17,
         MEX = 18
-    };
+    }
 }

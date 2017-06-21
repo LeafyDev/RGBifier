@@ -1,35 +1,36 @@
-﻿// ReSharper disable UnusedMember.Global
-// ReSharper disable InconsistentNaming
+﻿// ---------------------------------------------------------
+// Copyrights (c) 2014-2017 Seditio 🍂 All rights reserved.
+// ---------------------------------------------------------
 
 namespace CUE.Net.Devices.Keyboard.Enums
 {
     /// <summary>
-    /// Contains list of available physical layouts for keyboards.
+    ///   Contains list of available physical layouts for keyboards.
     /// </summary>
     public enum CorsairPhysicalKeyboardLayout
     {
         /// <summary>
-        /// US-Keyboard
+        ///   US-Keyboard
         /// </summary>
         US = 1,
 
         /// <summary>
-        /// UK-Keyboard
+        ///   UK-Keyboard
         /// </summary>
         UK = 2,
 
         /// <summary>
-        /// BR-Keyboard
+        ///   BR-Keyboard
         /// </summary>
         BR = 3,
 
         /// <summary>
-        /// JP-Keyboard
+        ///   JP-Keyboard
         /// </summary>
         JP = 4,
 
         /// <summary>
-        /// KR-Keyboard
+        ///   KR-Keyboard
         /// </summary>
         KR = 5
     }

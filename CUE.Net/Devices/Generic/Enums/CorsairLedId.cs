@@ -1,11 +1,14 @@
-﻿// ReSharper disable InconsistentNaming
+﻿// ---------------------------------------------------------
+// Copyrights (c) 2014-2017 Seditio 🍂 All rights reserved.
+// ---------------------------------------------------------
+
 
 #pragma warning disable 1591 // Missing XML comment for publicly visible type or member
 
 namespace CUE.Net.Devices.Generic.Enums
 {
     /// <summary>
-    /// Contains list of all LEDs available for all corsair devices.
+    ///   Contains list of all LEDs available for all corsair devices.
     /// </summary>
     public enum CorsairLedId
     {
@@ -204,6 +207,6 @@ namespace CUE.Net.Devices.Generic.Enums
         Lightbar16 = 185,
         Lightbar17 = 186,
         Lightbar18 = 187,
-        Lightbar19 = 188,
+        Lightbar19 = 188
     }
 }

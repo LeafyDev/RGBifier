@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using CUE.Net.Devices.Generic.Enums;
+
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Global
 
